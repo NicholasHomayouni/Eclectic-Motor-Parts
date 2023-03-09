@@ -1,27 +1,21 @@
-import { useState } from 'react';
+import React from 'react';
 
-const SubScreen = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-
-  const handleOuterClick = (event) => {
-    if (!event.target.closest('.sub-screen')) {
-      setIsVisible(false);
+export default function SubScreen({ onClose }) {
+  const handleClickOutside = (event) => {
+    if (event.target.classList.contains('ModalBackground')) {
+      onClose();
     }
   };
 
   return (
-    <div className="relative h-screen">
-      <div className="absolute inset-0 flex justify-center items-center">
-        {isVisible && (
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-screen-lg h-4 bg-yellow-300 text-center text-4xl font-bold py-2">
-            Sub-Screen Content
-          </div>
-        )}
+    <div
+      className="ModalBackground fixed top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-500 bg-opacity-50"
+      onClick={handleClickOutside}
+    >
+      <div className="Modal bg-gray-200 p-4 rounded-lg shadow-lg">
+        <h2 className="text-lg font-bold mb-4">SubScreen Title</h2>
+        <p>SubScreen content goes here.</p>
       </div>
-      {isVisible && <div className="fixed inset-0 bg-black opacity-25" onClick={handleOuterClick}></div>}
     </div>
   );
-};
-
-export default SubScreen;
+}
