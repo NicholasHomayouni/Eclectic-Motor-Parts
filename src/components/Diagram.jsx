@@ -2,6 +2,7 @@ import brakeGear from '/images/brakeGear.png';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import SubScreen from './Subscreen';
+import Table from './DiagramTable';
 
 export default function Diagram() {
     const [showSubScreen, setShowSubScreen] = useState(false); // react hook to manage state
@@ -57,6 +58,9 @@ export default function Diagram() {
                 width={700}
                 height={400}
             />
+            <section>
+                <Table />
+            </section>
         </div>
 
     )
